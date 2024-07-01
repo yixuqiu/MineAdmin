@@ -1,23 +1,28 @@
 {
-  "name": "xmo/mineadmin",
+  "name": "mineadmin/mineadmin",
   "type": "project",
   "keywords": [
     "mineadmin",
     "swoole",
-    "hyperf"
+    "hyperf",
+    "crud",
+    "fast",
+    "developer",
+    "admin",
+    "app store"
   ],
   "homepage": "https://www.mineadmin.com/",
   "description": "Quickly build a background management system for web applications",
   "license": "Apache-2.0",
   "require": {
-    "xmo/app-store": "2.0.x-dev",
-    "xmo/jwt-auth": "2.0.x-dev",
-    "xmo/mine-core": "2.0.x-dev",
-    "xmo/mine-generator": "2.0.x-dev",
-    "xmo/mine-helpers": "2.0.x-dev",
-    "xmo/mine-office": "2.0.x-dev",
-    "xmo/mine-service": "2.0.x-dev",
-    "xmo/mine-translatable": "2.0.x-dev"
+    "mineadmin/app-store": "~2.0",
+    "xmo/jwt-auth": "~2.0",
+    "xmo/mine-core": "~2.0",
+    "xmo/mine-generator": "~2.0",
+    "xmo/mine-helpers": "~2.0",
+    "xmo/mine-office": "~2.0",
+    "xmo/mine-service": "~2.0",
+    "xmo/mine-translatable": "~2.0"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.0",

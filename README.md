@@ -89,25 +89,14 @@ PHP有很多优秀的后台管理系统，但基于Swoole的后台管理系统�
 
 - 项目下载，请确保已经安装了 `Composer`
 ```shell
-git clone https://gitee.com/xmo/MineAdmin && cd MineAdmin
-composer config -g repo.packagist composer https://mirrors.tencent.com/composer/
-composer install
+composer create-project mineadmin/mineadmin --keep-vcs
 ```
 
 ## 项目安装
 
-打开终端，执行安装命令，按照提示，一步步完成`.env`文件的配置
-```shell
-php bin/hyperf.php mine:install
-```
+配置 `.env` 填写 `redis` `db` 相关信息，保存关闭。
 
-待提示以下信息后
-```shell
-Reset the ".env" file. Please restart the service before running 
-the installation command to continue the installation.
-```
-
-再次执行安装命令，执行Migrates数据迁移文件和SQL数据填充，完成安装。
+打开终端，执行安装命令，执行Migrates数据迁移文件和SQL数据填充，完成安装。
 ```shell
 php bin/hyperf.php mine:install
 ```
