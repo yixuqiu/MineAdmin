@@ -9,8 +9,8 @@ declare(strict_types=1);
  * @contact  root@imoi.cn
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
-use Mine\Crontab\MineCrontabProcess;
+use Hyperf\Crontab\Process\CrontabDispatcherProcess;
 
 return [
-    MineCrontabProcess::class,
+    CrontabDispatcherProcess::class,
 ];

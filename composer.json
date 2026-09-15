@@ -1,35 +1,84 @@
 {
-  "name": "xmo/mineadmin",
+  "name": "mineadmin/mineadmin",
   "type": "project",
   "keywords": [
     "mineadmin",
     "swoole",
-    "hyperf"
+    "hyperf",
+    "crud",
+    "fast",
+    "developer",
+    "admin",
+    "app store"
   ],
   "homepage": "https://www.mineadmin.com/",
   "description": "Quickly build a background management system for web applications",
   "license": "Apache-2.0",
   "require": {
-    "xmo/app-store": "2.0.x-dev",
-    "xmo/jwt-auth": "2.0.x-dev",
-    "xmo/mine-core": "2.0.x-dev",
-    "xmo/mine-generator": "2.0.x-dev",
-    "xmo/mine-helpers": "2.0.x-dev",
-    "xmo/mine-office": "2.0.x-dev",
-    "xmo/mine-service": "2.0.x-dev",
-    "xmo/mine-translatable": "2.0.x-dev"
+    "php": ">=8.2",
+    "ext-fileinfo": "*",
+    "ext-json": "*",
+    "ext-openssl": "*",
+    "ext-pdo": "*",
+    "ext-pdo_mysql": "*",
+    "ext-redis": "*",
+    "ext-swoole": ">=5.0",
+    "friendsofhyperf/tinker": "^3.2",
+    "guzzlehttp/guzzle": "^7.15.2",
+    "guzzlehttp/psr7": "^2.13.1",
+    "hyperf/async-queue": "3.2.*",
+    "hyperf/cache": "3.2.*",
+    "hyperf/carbon": "^3.2",
+    "hyperf/command": "3.2.*",
+    "hyperf/config": "3.2.*",
+    "hyperf/constants": "3.2.*",
+    "hyperf/context": "3.2.*",
+    "hyperf/contract": "3.2.*",
+    "hyperf/coroutine": "3.2.*",
+    "hyperf/crontab": "~3.2",
+    "hyperf/database": "3.2.*",
+    "hyperf/database-pgsql": "*",
+    "hyperf/db-connection": "3.2.*",
+    "hyperf/di": "3.2.*",
+    "hyperf/dispatcher": "3.2.*",
+    "hyperf/engine": "^2.0",
+    "hyperf/event": "3.2.*",
+    "hyperf/exception-handler": "3.2.*",
+    "hyperf/framework": "3.2.*",
+    "hyperf/guzzle": "^3.2",
+    "hyperf/helper": "~3.2",
+    "hyperf/http-server": "3.2.*",
+    "hyperf/logger": "3.2.*",
+    "hyperf/model-cache": "3.2.*",
+    "hyperf/paginator": "~3.2",
+    "hyperf/polyfill-coroutine": "3.2.*",
+    "hyperf/pool": "3.2.*",
+    "hyperf/process": "3.2.*",
+    "hyperf/redis": "3.2.*",
+    "hyperf/server": "3.2.*",
+    "hyperf/utils": "3.2.*",
+    "hyperf/validation": "~3.2",
+    "mineadmin/access": "3.2.0",
+    "mineadmin/app-store": "3.2.0",
+    "mineadmin/auth-jwt": "3.2.0",
+    "mineadmin/core": "3.2.0",
+    "mineadmin/jwt": "3.2.0",
+    "mineadmin/support": "3.2.0",
+    "mineadmin/swagger": "3.2.0",
+    "mineadmin/upload": "3.2.0"
   },
   "require-dev": {
+    "doctrine/dbal": "^4.4",
+    "fakerphp/faker": "^1.24",
     "friendsofphp/php-cs-fixer": "^3.0",
-    "hyperf/devtool": "3.1.*",
-    "hyperf/ide-helper": "3.1.*",
-    "hyperf/testing": "3.1.*",
-    "hyperf/watcher": "3.1.*",
+    "hyperf/devtool": "3.2.*",
+    "hyperf/ide-helper": "3.2.*",
+    "hyperf/testing": "3.2.*",
+    "hyperf/watcher": "3.2.*",
     "mockery/mockery": "^1.0",
-    "pestphp/pest": "^2.33",
-    "phpstan/phpstan": "^1.10",
-    "swoole/ide-helper": "^5.0",
-    "zircote/swagger-php": "4.8.0"
+    "phpstan/phpstan": "^2.1",
+    "swoole/ide-helper": "^6.0",
+    "zircote/swagger-php": "^4.6"
   },
   "suggest": {
     "ext-openssl": "Required to use HTTPS.",
@@ -40,12 +89,8 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": "app/",
-      "Api\\": "api/"
-    },
-    "files": [
-      "common/common.php"
-    ]
+      "App\\": "app/"
+    }
   },
   "autoload-dev": {
     "psr-4": {
@@ -56,12 +101,13 @@
   "prefer-stable": true,
   "config": {
     "optimize-autoloader": true,
-    "sort-packages": true,
-    "allow-plugins": {
-      "pestphp/pest-plugin": true
+    "sort-packages": true
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "3.0-dev"
     }
   },
-  "extra": [],
   "scripts": {
     "post-root-package-install": [
       "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
@@ -69,13 +115,23 @@
     "post-autoload-dump": [
       "rm -rf runtime/container"
     ],
-    "test": "pest ",
-    "coverage": "pest --coverage --coverage-clover tests/coverage.xml ",
+    "test": [
+      "co-phpunit --prepend tests/bootstrap.php --group=migrations --colors=always",
+      "co-phpunit --prepend tests/bootstrap.php --exclude-group=migrations"
+    ],
+    "coverage": [
+      "co-phpunit --prepend tests/bootstrap.php --group=migrations --colors=always --coverage-xml tests/coverage",
+      "co-phpunit --prepend tests/bootstrap.php --exclude-group=migrations --colors=always --coverage-xml tests/coverage"
+    ],
     "cs-fix": "php-cs-fixer fix $1",
-    "analyse": "phpstan analyse --memory-limit 500M -l 0 -c phpstan.neon ./app ./config ./api ./common",
+    "analyse": "phpstan analyse --memory-limit 500M -l 5 -c phpstan.neon.dist ./app ./config",
     "start": [
       "Composer\\Config::disableProcessTimeout",
-      "php ./bin/hyperf.php start"
+      "php bin/hyperf.php start"
+    ],
+    "dev": [
+      "Composer\\Config::disableProcessTimeout",
+      "php bin/hyperf.php server:watch"
     ]
   }
 }

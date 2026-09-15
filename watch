@@ -42,7 +42,7 @@ if (!function_exists('exec')) {
     exit(1);
 }
 
-define('PHP', PHP_BIN_FILE == 'which php' ? exec('which php') : PHP_BIN_FILE);
+define('PHP', PHP_BINARY ?? (PHP_BIN_FILE == 'which php' ? exec('which php') : PHP_BIN_FILE));
 
 if (!file_exists(PHP) || !is_executable(PHP)) {
     echo '[x] PHP bin (" ' . PHP . ' ") 路径没有找到或无法执行，请确认路径正确?' . PHP_EOL;
@@ -77,7 +77,7 @@ echo CONSOLE_COLOR_YELLOW . "🚀 Start @ " . date('Y-m-d H:i:s') . PHP_EOL;
 start();
 state();
 Timer::tick(SCAN_INTERVAL, 'watch');
-
+Event::wait();
 function killOldProcess()
 {
     // pid存在则关闭存在的进程
@@ -140,7 +140,7 @@ function watch()
 {
     global $hashes;
     foreach ($hashes as $pathName => $currentHash) {
-        if (!file_exists($pathName)) {
+        if (!file_exists($pathName) || is_dir($pathName)) {
             unset($hashes[$pathName]);
             continue;
         }
@@ -181,6 +181,9 @@ function serve(Process $serve)
 
 function fileHash(string $pathname): string
 {
+    if (is_dir($pathname)){
+        return 'dir';
+    }
     $contents = file_get_contents($pathname);
     if (false === $contents) {
         return 'deleted';

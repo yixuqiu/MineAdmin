@@ -14,7 +14,12 @@ vendor/
 .vscode/
 tests/cover
 tests/coverage.xml
+tests/coverage
 tests/coding_standard.xml
 tests/junit.xml
 public
+!web/public
 *.lock
+!composer.lock
+storage/swagger/http.json
+storage/uploads

@@ -12,12 +12,11 @@ declare(strict_types=1);
 
 namespace HyperfTests;
 
-use App\System\Model\SystemUser;
-use Hyperf\Redis\Redis;
+use Faker\Factory;
+use Faker\Generator;
 use Hyperf\Testing\Client;
 use Hyperf\Testing\Concerns\RunTestsInCoroutine;
 use PHPUnit\Framework\TestCase;
-use Xmo\JWTAuth\JWT;
 
 /**
  * Class HttpTestCase.
@@ -40,32 +39,17 @@ abstract class HttpTestCase extends TestCase
 
     public function __construct($name = null, array $data = [], $dataName = '')
     {
-        parent::__construct($name, $data, $dataName);
+        parent::__construct($name);
         $this->client = make(Client::class);
     }
 
     public function __call($name, $arguments)
     {
-        $count = count($arguments);
-        if (! isset($arguments[2])) {
-            if ($count === 1) {
-                $arguments[1] = [];
-            }
-            $arguments[2] = [
-                'Authorization' => 'Bearer ' . $this->getBearToken(),
-            ];
-        }
         return $this->client->{$name}(...$arguments);
     }
 
-    public function getBearToken(): ?string
+    protected function fakerGenerator(): Generator
     {
-        $jwt = make(JWT::class);
-        $user = SystemUser::query()->whereKey(env('SUPER_ADMIN', 1))->first();
-        $token = $jwt->getToken($user->toArray());
-        $key = sprintf('%sToken:%s', config('cache.default.prefix'), $user->id);
-        $redis = make(Redis::class);
-        $redis->set($key, $token);
-        return $token;
+        return Factory::create();
     }
 }

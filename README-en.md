@@ -1,171 +1,164 @@
-[中文](./README.md) | English
-# Projects
+[中文](./README.md) | English | [日本語](./README-ja.md)
+
+# MineAdmin
 
 <p align="center">
-    <img src="https://doc.mineadmin.com/logo.svg" width="120" />
-</p>
-<p align="center">
-    <a href="https://www.mineadmin.com" target="_blank">official website</a> |
-    <a href="https://doc.mineadmin.com" target="_blank">Document</a> | 
-    <a href="https://demo.mineadmin.com" target="_blank">Demo</a> |
-    <a href="https://hyperf.wiki/3.0/#/" target="_blank">Hyperf Official Document</a> 
+    <img src="https://raw.githubusercontent.com/mineadmin/MineAdmin-Vue/53924b3f98733201d4a2492cf2c91e65a56421be/public/logo.svg" width="120" alt="MineAdmin Logo" />
 </p>
 
 <p align="center">
-    <img src="https://gitee.com/xmo/MineAdmin/badge/star.svg?theme=dark" />
-    <img src="https://gitee.com/xmo/MineAdmin/badge/fork.svg?theme=dark" />
-    <img src="https://svg.hamm.cn/badge.svg?key=License&value=Apache-2.0&color=da4a00" />
-    <img src="https://svg.hamm.cn/badge.svg?key=MineAdmin&value=v2.0 LTS" />
+    <a href="https://www.mineadmin.com" target="_blank">Official Website</a> |
+    <a href="https://doc.mineadmin.com" target="_blank">Documentation</a> |
+    <a href="https://demo.mineadmin.com" target="_blank">Demo</a>
 </p>
 
-## Projects Description
+MineAdmin is an out-of-the-box admin management system for quickly building website back offices, operation platforms, permission centers, internal management systems, CMS, CRM, OA, ERP, and other business applications.
 
-PHP has a lot of good backend management system, but Swoole based backend management system did not find suitable for my own.
-So it developed a set of background management system. The system can be used for website management background , CMS, CRM, OA, ERP and so on.
+It includes the common capabilities needed by enterprise admin systems, such as organization management, users, permissions, menus, logs, attachments, and an app marketplace. You can use it directly to manage your business, or extend your own modules on top of it and spend more time on the business itself.
 
-Background system based on Hyperf framework development. Enterprise-level architecture layered to easily support startups and personal pre-development use , using a small amount of server resources comparable to the performance of static language .
-Front-end use of Vue3 + Vite4 + Pinia + Arco, one end of the adaptation of PC, mobile, tablet!
+Before using MineAdmin, please read and agree to the [Disclaimer](https://www.mineadmin.com/about/declaration).
 
-If you think it's not bad, please point a ⭐star support it, it will be the biggest support and encouragement to me!
-Please read [Disclaimer](https://doc.mineadmin.com/guide/start/declaration.html) and agree to it before using MineAdmin.
-
-- Tencent Cloud Special Offer: [Click to enter](http://txy.mineadmin.com)
-- AliCloud Special Offer：[Click to enter](http://aly.mineadmin.com)
-
-## Front-end repository address
-Move to the front-end repository
+## Frontend Repository
+Go to the frontend repository
 
 - [Github MineAdmin-Vue](https://github.com/mineadmin/MineAdmin-Vue)
 - [Gitee MineAdmin-Vue](https://gitee.com/mineadmin/MineAdmin-vue)
 
-## Official communication group
-> QQ group for communication and learning, please do not water group.
 
-<img src="https://svg.hamm.cn/badge.svg?key=QQ群&value=150105478" />
+## What Can It Be Used For
 
-## Built-in functions
+- Build internal enterprise admin systems, such as basic management for employees, departments, positions, roles, and permissions.
+- Build business operation platforms, such as content management, customer management, order management, workflow management, and report dashboards.
+- Use it as the admin foundation for new projects, directly reusing common capabilities such as login, permissions, menus, logs, and attachment uploads.
+- Use it as a plugin-based application platform, installing, uninstalling, or extending more business features through the app marketplace.
+- Provide a unified admin experience for teams, including multilingual support, theme settings, layout switching, tabs, breadcrumbs, and watermarks.
 
-1. user management, complete the user add, modify, delete configuration, support for different users to log in the background to see different home page
-2. department management, departmental organization (company, department, group), tree structure show support for data permissions
-3. position management, you can configure the user's position
-4. role management, role menu rights allocation, role data rights allocation
-5. menu management, configure system menus and buttons, etc.
-6. dictionary management, the system often used and fixed data can be reused and maintained
-7. system configuration, some common settings of the system management
-8. operation log, the query of some normal operations of the system by users.
-9. login log, user login system record query
-10. online users, view the current logged-in users
-11. service monitoring, view the current server status and PHP environment and other information
-12. attachment management, management of the current system to upload files and pictures and other information
-13. data table maintenance, the system's data table can be cleaned up debris and optimization
-14. module management, manage all modules of the system
-15. timed tasks, online (add, modify, delete) task scheduling including execution results logs
-16. code generation, front and back-end code generation (php, vue, js, sql), support for downloading and generating to the module.
-17. cache monitoring , view the Redis information and the system used key information
-18. API management , application and interface management , interface authorization and other functions. Interface documents are automatically generated , input and output parameter checking , etc.
-19. queue management, message queue management functions, message management, message sending. The use of ws mode instant messaging reminders (need to install rabbitMQ)
-20. application market , you can download a variety of basic applications , plug-ins , front-end components , etc. (under development ...)
+## Built-in Features
 
-## Environment requirements
+### Accounts and Permissions
 
-- Swoole >= 5.0 with `Short Name` turned off.
-- PHP >= 8.1 and turn on the following extensions:
-    - mbstring
-    - json
-    - pdo
-    - openssl
-    - redis
-    - pcntl
-- Mysql >= 5.7
+- User management: add, edit, delete, disable users, initialize passwords, assign roles, and more.
+- Role management: assign menu permissions and button permissions by role, controlling what different users can access and operate.
+- Menu management: maintain admin menus, routes, button permissions, external links, iframe pages, sorting, caching, and hidden status.
+- Data permissions: configure visible data ranges by position or user, so different members only see data within their permission scope.
+- Login authentication: provides admin login, token verification, permission checks, and current user information.
+
+### Organization Structure
+
+- Department management: maintain hierarchical structures for companies, institutions, teams, and other organizations.
+- Position management: maintain positions under departments and assign users to corresponding positions.
+- Leader management: set department leaders to track organizational relationships and management responsibilities.
+- Member viewing: view related users by department and quickly understand member distribution across the organization.
+
+### Logs and Audit
+
+- Login logs: record user login time, login IP, browser, login status, and messages.
+- Operation logs: record key user operations, request methods, accessed routes, business names, and operation times.
+- Permission audit: combine roles, menus, buttons, and data permissions to help locate where a user's accessible resources come from.
+
+### Data and Files
+
+- Attachment management: centrally manage files, images, and other resources uploaded to the system.
+- File upload: provides admin upload entry points and records uploader information, file details, and other data.
+- Data center: provides a unified management entry for future business data, file resources, and extension modules.
+
+### Application Extensions
+
+- App marketplace: view apps, plugins, and frontend components, and download, install, or uninstall them as needed.
+- Local apps: view locally installed apps and upload local app packages.
+- Plugin extensions: suitable for packaging independent business capabilities as plugins, reducing changes to the main system.
+
+### Admin Experience
+
+- Workbench and dashboards: provides examples such as a workbench, analysis page, and report page as admin home pages.
+- Personal center: supports common account operations such as profile maintenance and password changes.
+- Multilingual support: includes Simplified Chinese, Traditional Chinese, English, and other language resources.
+- Themes and layouts: supports light mode, dark mode, system mode, theme colors, classic layout, column layout, mixed layout, and more.
+- Common interactions: includes tabs, breadcrumbs, fullscreen, search, notifications, shortcuts, watermarks, back-to-top, and other common admin experiences.
+
+## Quick Start
+
+MineAdmin uses migration files to install and initialize data. You do not need to manually import SQL files.
+
+Please make sure `Composer` is installed locally, then run:
+
+```shell
+composer create-project mineadmin/mineadmin --keep-vcs
+```
+
+For complete installation, configuration, deployment, and development instructions, please see the [official documentation](https://doc.mineadmin.com).
+
+## Demo Access
+
+[Online Demo](https://demo.mineadmin.com)
+
+- Username: `admin`
+- Password: `123456`
+
+> The demo environment is for trial use only. Please do not add irrelevant data.
+
+## Requirements
+
+- PHP >= 8.1
+- Swoole >= 5.0, with `Short Name` disabled
 - Redis >= 4.0
+- MySQL >= 5.7 / PostgreSQL >= 10 / SQL Server
 - Git >= 2.x
 
+## Official Community
 
-## Download the project
-- Please note that MineAdmin does not use SQL file import for installation, the system uses Migrates migration files to install and populate the data.
+> The QQ group is for discussion and learning. Please avoid off-topic chatting.
 
-- To download the project, make sure you have installed ``Composer``.
-```shell
-git clone https://gitee.com/xmo/MineAdmin && cd MineAdmin
-composer config -g repo.packagist composer https://mirrors.tencent.com/composer/
-composer install
-```
+<a href="https://qm.qq.com/q/PJnEgr4D8C">
+  <img src="https://svg.hamm.cn/badge.svg?key=QQ Group&value=150105478" />
+</a>
 
-## Project Installation
+## Strategic Partnership
 
-Open a terminal, execute the install command, and follow the prompts to configure the `.env` file step by step.
-```shell
-php bin/hyperf.php mine:install
-```
-
-When prompted with the following message
-```shell
-Reset the ".env" file. Please restart the service before running 
-the installation command to continue the installation.
-```
-
-Execute the installation command again to execute the Migrates data migration file and SQL data fill to complete the installation.
-```shell
-php bin/hyperf.php mine:install
-```
-
-[Click here -> for FAQ](https://doc.mineadmin.com/faqs/)
+[Jingcedun High-Protection CDN - A reliable service provider against DDoS/CC network attacks](https://www.jcdun.com/guoneigaofangcdn)
 
 ## Disclaimer
+
 [Disclaimer](https://doc.mineadmin.com/guide/start/declaration.html)
 
-The use of this software shall not be used to develop any software or application that violates the relevant national policies, and `MineAdmin` has nothing to do with any legal responsibility caused by the use of this software.
+This software must not be used to develop software or applications that violate relevant national policies. Any legal responsibility caused by the use of this software has nothing to do with `MineAdmin`.
 
-## Trial Addresses
+## Acknowledgements
 
-[Experience Address](https://demo.mineadmin.com)
-- Account: superAdmin
-- Password: admin123
+> Listed in no particular order.
 
-> Please do not add dirty data
+[Hyperf](https://hyperf.io/)  
+[Element Plus](https://element-plus.org/)  
+[Swoole](https://www.swoole.com)  
+[Vue](https://vuejs.org/)  
+[Vite](https://vitejs.cn/)  
+[JetBrains](https://www.jetbrains.com/)
 
-## Acknowledgments
+## OSCS Security Certification
 
-> The following are in no particular order
+[![OSCS Status](https://www.oscs1024.com/platform/badge/kanyxmo/MineAdmin.svg?size=large)](https://www.murphysec.com/dr/9ztZvuSN6OLFjCDGVo)
 
-[Hyperf a high-performance enterprise-class concurrent programming framework](https://hyperf.io/)
-
-[Arco An enterprise-class design system from ByteHop](https://arco.design/)
-
-[Swoole PHP Concurrent Programming Framework](https://www.swoole.com)
-
-[Vue](https://vuejs.org/)
-
-[Vite](https://vitejs.cn/)
-
-[Jetbrains Productivity Tools](https://www.jetbrains.com/)
-
-## OSCS Security Certified
-![OSCS Status](https://www.oscs1024.com/platform/badge/kanyxmo/MineAdmin.svg?size=large)
-
-## Stargazers over time
+## Star History
 
 [![Stargazers over time](https://starchart.cc/mineadmin/mineadmin.svg)](https://starchart.cc/mineadmin/mineadmin.svg)
 
-Thank you to all the code contributors who have participated in the development of MineAdmin。 [[contributors](https://github.com/mineadmin/minedmin/graphs/contributors)]
+## Contributors
+
+> Thanks to all code contributors who participated in the development of MineAdmin. [[contributors](https://github.com/mineadmin/mineadmin/graphs/contributors)]
+
 <a href="https://github.com/mineadmin/mineadmin/graphs/contributors">
-<img src="https://contrib.rocks/image?repo=mineadmin/mineadmin" />
+  <img src="https://contrib.rocks/image?repo=mineadmin/mineadmin" />
 </a>
 
 [![Contributor Trends](https://contributor-overtime-api.apiseven.com/contributors-svg?chart=contributorOverTime&repo=mineadmin/mineadmin)](https://www.apiseven.com/en/contributor-graph?chart=contributorOverTime&repo=mineadmin/mineadmin)
 
+## Demo Screenshots
 
-## Demo image
-<img src="https://s1.ax1x.com/2022/07/31/vklKzR.jpg" />
-<img src="https://s1.ax1x.com/2022/07/31/vkl8eK.jpg" />
-<img src="https://s1.ax1x.com/2022/07/31/vkl1L6.jpg" />
-<img src="https://s1.ax1x.com/2022/07/31/vklNJH.jpg" />
-<img src="https://s1.ax1x.com/2022/07/31/vklJoD.jpg" />
-<img src="https://s1.ax1x.com/2022/07/31/vkllsx.jpg" />
-<img src="https://s1.ax1x.com/2022/07/31/vklZoF.jpg" />
-<img src="https://s1.ax1x.com/2022/07/31/vklUWd.jpg" />
-<img src="https://s1.ax1x.com/2022/07/31/vkl0yt.jpg" />
-<img src="https://s1.ax1x.com/2022/07/31/vkltFe.jpg" />
-<img src="https://s1.ax1x.com/2022/07/31/vkluW9.jpg" />
-<img src="https://s1.ax1x.com/2022/07/31/vklnJJ.jpg" />
-<img src="https://s1.ax1x.com/2022/07/31/vklmi4.jpg" />
+[![pAdQKPJ.png](https://s21.ax1x.com/2024/10/22/pAdQKPJ.png)](https://imgse.com/i/pAdQKPJ)
+[![pAdQlx1.png](https://s21.ax1x.com/2024/10/22/pAdQlx1.png)](https://imgse.com/i/pAdQlx1)
+[![pAdQQ2R.png](https://s21.ax1x.com/2024/10/22/pAdQQ2R.png)](https://imgse.com/i/pAdQQ2R)
+[![pAdQGqK.png](https://s21.ax1x.com/2024/10/22/pAdQGqK.png)](https://imgse.com/i/pAdQGqK)
+[![pAdQYVO.png](https://s21.ax1x.com/2024/10/22/pAdQYVO.png)](https://imgse.com/i/pAdQYVO)
+[![pAdQNIe.png](https://s21.ax1x.com/2024/10/22/pAdQNIe.png)](https://imgse.com/i/pAdQNIe)
+[![pAdQaPH.png](https://s21.ax1x.com/2024/10/22/pAdQaPH.png)](https://imgse.com/i/pAdQaPH)
+[![pAdQdGd.png](https://s21.ax1x.com/2024/10/22/pAdQdGd.png)](https://imgse.com/i/pAdQdGd)
